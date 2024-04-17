@@ -3,8 +3,11 @@ import "@/styles/globals.css";
 import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 
-export default function App({ Component, pageProps }: AppProps) {
-  const { session } = pageProps;
+export default function App({
+  Component,
+  pageProps: { session, ...pageProps },
+}: AppProps) {
+  console.info("session", session);
   return (
     <SessionProvider session={session}>
       <Layout>

@@ -1,6 +1,94 @@
-/* @tailwind base;
+@tailwind base;
 @tailwind components;
-@tailwind utilities; */
+@tailwind utilities;
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 52px;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  background: white;
+  /* @apply flex justify-between items-center fixed w-full h-[52px] top-0 shadow-sm bg-white; */
+}
+
+.navbar_logo {
+  color: darkblue;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0px 18px;
+  /* @apply text-blue-800 text-lg font-semibold cursor-pointer px-[18px] py-0; */
+}
+
+.navbar_list {
+  padding: 0px 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  /* @apply flex gap-3 items-center px-[18px] py-0; */
+}
+
+.navbar_button {
+  display: none;
+  cursor: pointer;
+  /* @apply hidden cursor-pointer; */
+}
+
+.navbar_list--item {
+  cursor: pointer;
+  /* @apply cursor-pointer; */
+}
+
+.navbar_list--item:hover {
+  color: darkgray;
+  /* @apply text-gray-600; */
+}
+
+.layout {
+  padding-top: 52px;
+  /* @apply pt-[52px]; */
+}
+
+@media only screen and (max-width: 600px) {
+  .navbar--mobile {
+    position: fixed;
+    width: 100%;
+    top: 52px;
+    background: darkblue;
+    color: white;
+    height: 100vh;
+    /* @apply fixed w-full text-white h-screen top-[52px] bg-blue-800; */
+  }
+
+  .navbar_list {
+    display: none;
+    /* @apply hidden;*/
+  }
+  .navbar_button {
+    display: black;
+    /* @apply block px-[18px] py-0; */
+  }
+  .navbar_list--item--mobile {
+    display: none;
+    /* @apply cursor-pointer; */
+  }
+  .navbar_list--item--mobile:hover {
+    color: gray;
+    /* @apply text-gray-600; */
+  }
+  .navbar_list--mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: start;
+    padding: 24px 18px;
+    /* @apply flex flex-col gap-4 px-[18px] py-6; */
+  }
+}
 
 body {
   margin: 0;
@@ -368,7 +456,7 @@ input:checked + .carousel__slide-container .nav label {
   padding: 10px 10px;
   font-size: 16px;
   border-radius: 0.3rem;
-  border: 1px solid lightgrey;
+  border: 1px solid light grey;
   width: 96%;
   max-width: 680px;
 }
@@ -454,93 +542,4 @@ input:checked + .carousel__slide-container .nav label {
   border-radius: 50%;
   z-index: 9999;
   animation: rotation 1s linear infinite;
-}
-/** 여기부터 새로운 css **/
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  height: 52px;
-  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  background: white;
-  /* @apply flex justify-between items-center fixed w-full h-[52px] top-0 shadow-sm bg-white; */
-}
-
-.navbar_logo {
-  color: darkblue;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  padding: 0px 18px;
-  /* @apply text-blue-800 text-lg font-semibold cursor-pointer px-[18px] py-0; */
-}
-
-.navbar_list {
-  padding: 0px 18px;
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  /* @apply flex gap-3 items-center px-[18px] py-0; */
-}
-
-.navbar_button {
-  display: none;
-  cursor: pointer;
-  /* @apply hidden cursor-pointer; */
-}
-
-.navbar_list--item {
-  cursor: pointer;
-  /* @apply cursor-pointer; */
-}
-
-.navbar_list--item:hover {
-  color: darkgray;
-  /* @apply text-gray-600; */
-}
-
-.layout {
-  padding-top: 52px;
-  /* @apply pt-[52px]; */
-}
-
-@media only screen and (max-width: 600px) {
-  .navbar--mobile {
-    position: fixed;
-    width: 100%;
-    top: 52px;
-    background: darkblue;
-    color: white;
-    height: 100vh;
-    /* @apply fixed w-full text-white h-screen top-[52px] bg-blue-800; */
-  }
-
-  .navbar_list {
-    display: none;
-    /* @apply hidden;*/
-  }
-  .navbar_button {
-    display: black;
-    /* @apply block px-[18px] py-0; */
-  }
-  .navbar_list--item--mobile {
-    display: none;
-    /* @apply cursor-pointer; */
-  }
-  .navbar_list--item--mobile:hover {
-    color: gray;
-    /* @apply text-gray-600; */
-  }
-  .navbar_list--mobile {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-    align-items: start;
-    padding: 24px 18px;
-    /* @apply flex flex-col gap-4 px-[18px] py-6; */
-  }
 }

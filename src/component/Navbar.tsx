@@ -3,8 +3,11 @@ import Link from "next/link";
 
 import { BiMenu } from "react-icons/bi";
 import { AiOutlineClose } from "react-icons/ai";
+import { signOut, useSession } from "next-auth/react";
 
 export default function Navbar() {
+  const { data: session, status } = useSession();
+  console.info({ session, status });
   const [isOpen, setIsOpen] = useState(false); /*열려있거나 닫힘*/
   return (
     <>
@@ -13,7 +16,7 @@ export default function Navbar() {
           nextmap
         </Link>
         <div className="navbar_list">
-          <Link href="/stores" className="navbar_list--item">
+          {/* <Link href="/stores" className="navbar_list--item">
             맛집목록
           </Link>
           <Link href="/stores/new" className="navbar_list--item">
@@ -21,10 +24,24 @@ export default function Navbar() {
           </Link>
           <Link href="/users/likes" className="navbar_list--item">
             찜한가게
-          </Link>
-          <Link href="/users/login" className="navbar_list--item">
-            로그인
-          </Link>
+          </Link> */}
+          {status === "authenticated" ? (
+            <div
+              onClick={async (e) => {
+                e.preventDefault();
+                await signOut();
+                //router 안쓰고 아예 브라우저 초기화하는 이유는 세션날리려고
+                location.href = "/";
+              }}
+              className="navbar_list--item"
+            >
+              로그아웃
+            </div>
+          ) : (
+            <Link href="/users/login" className="navbar_list--item">
+              로그인
+            </Link>
+          )}
         </div>
         {/*mobile button*/}
         <div
@@ -50,9 +67,23 @@ export default function Navbar() {
             <Link href="/users/likes" className="navbar_list--item--mobile">
               찜한가게
             </Link>
-            <Link href="/users/login" className="navbar_list--item--mobile">
-              로그인
-            </Link>
+            {status === "authenticated" ? (
+              <div
+                onClick={async (e) => {
+                  e.preventDefault();
+                  await signOut();
+                  //router 안쓰고 아예 브라우저 초기화하는 이유는 세션날리려고
+                  location.href = "/";
+                }}
+                className="navbar_list--item"
+              >
+                로그아웃
+              </div>
+            ) : (
+              <Link href="/users/login" className="navbar_list--item">
+                로그인
+              </Link>
+            )}
           </div>
         </div>
       )}
